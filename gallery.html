@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Sharon Hartwell MLA</title>
+  <meta name="description" content="Photos from events, community visits, and the riding of Bulkley Valley-Stikine with MLA Sharon Hartwell." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open       { display: flex; }
+    .lightbox__inner     { position: relative; max-width: 90vw; max-height: 90vh; }
+    .lightbox__img       { max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: var(--radius); display: block; }
+    .lightbox__close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .lightbox__caption   { color: rgba(255,255,255,0.75); font-size: 0.9rem; text-align: center; margin-top: 0.75rem; }
+
+    /* Filter tabs */
+    .gallery-filters     { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .filter-btn {
+      padding: 0.45rem 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      background: var(--white);
+      color: var(--medium-text);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .filter-btn.active,
+    .filter-btn:hover    { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    /* Gallery placeholder label */
+    .gallery-item .ph-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,51,102,0.7);
+      color: var(--white);
+      font-size: 0.78rem;
+      padding: 0.4rem 0.75rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="nav-brand__name">Sharon Hartwell</span>
+        <span class="nav-brand__title">MLA &bull; Bulkley Valley-Stikine</span>
+      </a>
+      <nav class="nav-links" role="navigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="bio.html">Bio</a>
+        <a href="riding.html">The Riding</a>
+        <a href="services.html">Services</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="videos.html">Videos</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a href="contact.html" class="btn btn--primary nav-cta">Get in Touch</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="bio.html">Bio</a>
+    <a href="riding.html">The Riding</a>
+    <a href="services.html">Services</a>
+    <a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="videos.html">Videos</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main>
+
+    <!-- ── Page Hero ─────────────────────────────────────── -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="sep">/</span>
+          <span class="current">Gallery</span>
+        </nav>
+        <div class="page-hero__eyebrow">Photos</div>
+        <h1>Gallery</h1>
+        <p>Photos from events, community visits, and the beautiful Bulkley Valley-Stikine region.</p>
+      </div>
+    </section>
+
+    <!-- ── Gallery ──────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+
+        <!-- Filter Tabs -->
+        <div class="gallery-filters">
+          <button class="filter-btn active" data-filter="all">All Photos</button>
+          <button class="filter-btn" data-filter="events">Events</button>
+          <button class="filter-btn" data-filter="community">Community</button>
+          <button class="filter-btn" data-filter="legislature">Legislature</button>
+          <button class="filter-btn" data-filter="riding">The Riding</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+
+          <!-- Row 1 -->
+          <div class="gallery-item" data-category="events" data-caption="Smithers Town Hall – May 2026">
+            <!-- Replace div with: <img src="images/gallery/event-smithers-townhall.jpg" alt="Smithers Town Hall" /> -->
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Smithers Town Hall, May 2026</span>
+          </div>
+
+          <div class="gallery-item" data-category="community" data-caption="Burns Lake Community Visit – April 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Burns Lake Visit, Apr 2026</span>
+          </div>
+
+          <div class="gallery-item" data-category="legislature" data-caption="Legislature Session – Spring 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Legislature, Spring 2026</span>
+          </div>
+
+          <div class="gallery-item" data-category="riding" data-caption="Bulkley Valley – Winter Landscape">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Bulkley Valley Landscape</span>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="gallery-item" data-category="community" data-caption="Houston Community Meeting – March 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Houston Meeting, Mar 2026</span>
+          </div>
+
+          <div class="gallery-item" data-category="events" data-caption="Healthcare Forum – March 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Healthcare Forum, Mar 2026</span>
+          </div>
+
+          <div class="gallery-item" data-category="riding" data-caption="Stikine River – Summer">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Stikine River</span>
+          </div>
+
+          <div class="gallery-item" data-category="community" data-caption="Telkwa Community Barbecue – 2025">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Telkwa BBQ, 2025</span>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="gallery-item" data-category="legislature" data-caption="Question Period – Winter Session 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Question Period, 2026</span>
+          </div>
+
+          <div class="gallery-item" data-category="riding" data-caption="Hudson Bay Mountain – Smithers">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Hudson Bay Mountain</span>
+          </div>
+
+          <div class="gallery-item" data-category="events" data-caption="Seniors Forum – February 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Seniors Forum, Feb 2026</span>
+          </div>
+
+          <div class="gallery-item" data-category="community" data-caption="Granisle Community Visit – 2025">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Granisle Visit, 2025</span>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="gallery-item" data-category="riding" data-caption="Babine Lake – Lakes District">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Babine Lake</span>
+          </div>
+
+          <div class="gallery-item" data-category="legislature" data-caption="Committee Hearing – 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Committee Hearing, 2026</span>
+          </div>
+
+          <div class="gallery-item" data-category="community" data-caption="Dease Lake Community Meeting – 2025">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Dease Lake, 2025</span>
+          </div>
+
+          <div class="gallery-item" data-category="events" data-caption="Agricultural Meeting – Hazelton 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Ag Meeting, Hazelton</span>
+          </div>
+
+        </div>
+
+        <p style="text-align:center; margin-top:2rem; font-size:0.875rem; color:var(--light-text);">
+          <em>Photos will appear here as they are added. Replace placeholder tiles with real images.</em>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ── CTA ───────────────────────────────────────────── -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Attend an Upcoming Event</h2>
+        <p>Join Sharon at a town hall, community roundtable, or public meeting near you.</p>
+        <div class="cta-buttons">
+          <a href="events.html" class="btn btn--gold btn--lg">View Events</a>
+          <a href="contact.html" class="btn btn--outline-white btn--lg">Contact the Office</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Photo lightbox" aria-modal="true">
+    <div class="lightbox__inner">
+      <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
+      <div class="lightbox__img" id="lightboxImg" style="width:600px;max-width:90vw;aspect-ratio:4/3;background:linear-gradient(135deg,#1a4d8c,#2a6db5);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.9rem;"></div>
+      <p class="lightbox__caption" id="lightboxCaption"></p>
+    </div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand__name">Sharon Hartwell</div>
+          <div class="footer-brand__title">MLA &bull; Bulkley Valley-Stikine</div>
+          <p>Serving the communities of Bulkley Valley-Stikine with dedication, integrity, and a strong voice for rural British Columbia.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="bio.html">Bio</a></li>
+            <li><a href="riding.html">The Riding</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="videos.html">Videos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html">Constituency Help</a></li>
+            <li><a href="services.html">Provincial Services</a></li>
+            <li><a href="services.html">Municipal Liaison</a></li>
+            <li><a href="services.html">Federal Referrals</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Constituency Office</h4>
+          <p>1164 Main Street</p>
+          <p>Smithers, BC &nbsp;V0J 2N0</p>
+          <br />
+          <p>Phone: [Phone Number]</p>
+          <p>Fax: [Fax Number]</p>
+          <br />
+          <p><a href="contact.html" class="footer-gold-link">Contact Us &rarr;</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sharon Hartwell MLA. All rights reserved.</p>
+        <p>MLA for Bulkley Valley-Stikine &bull; Conservative Party of BC</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Gallery filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        galleryItems.forEach((item) => {
+          item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    galleryItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        lightboxImg.textContent = item.querySelector('.ph-label')?.textContent || 'Photo';
+        lightboxCaption.textContent = item.dataset.caption || '';
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>
