@@ -134,4 +134,67 @@
       }
     });
   }
+
+  // ── Analytics (Google Analytics 4) ───────────────────────
+  // SETUP: Replace G-XXXXXXXXXX with your Measurement ID from analytics.google.com
+  // To get a Measurement ID: GA4 > Admin > Data Streams > Web stream > Measurement ID
+  const GA_ID = 'G-XXXXXXXXXX';
+
+  if (GA_ID !== 'G-XXXXXXXXXX') {
+    // Load GA4 script
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+
+    // Track CTA button clicks
+    document.querySelectorAll('.btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        gtag('event', 'cta_click', {
+          event_category: 'CTA',
+          event_label: (btn.innerText || '').trim().slice(0, 60),
+          page_path:    window.location.pathname,
+        });
+      });
+    });
+
+    // Track form submissions
+    document.querySelectorAll('form').forEach((form) => {
+      form.addEventListener('submit', () => {
+        gtag('event', 'form_submit', {
+          event_category: 'Engagement',
+          event_label:    document.title,
+          page_path:      window.location.pathname,
+        });
+      });
+    });
+
+    // Track external link clicks (social, Elections BC, etc.)
+    document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        gtag('event', 'external_link', {
+          event_category: 'Outbound',
+          event_label:    link.href,
+          page_path:      window.location.pathname,
+        });
+      });
+    });
+
+    // Track phone link clicks (tel:)
+    document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        gtag('event', 'phone_click', {
+          event_category: 'Contact',
+          event_label:    link.href,
+          page_path:      window.location.pathname,
+        });
+      });
+    });
+  }
 })();

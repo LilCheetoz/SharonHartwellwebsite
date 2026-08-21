@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Gallery | Sharon Hartwell MLA" />
+  <meta property="og:description" content="Photos from community visits, events, and the beautiful Bulkley Valley-Stikine region." />
+  <meta property="og:image"       content="images/og-image.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     /* Lightbox */
@@ -77,12 +84,14 @@
       <nav class="nav-links" role="navigation" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="bio.html">Bio</a>
+        <a href="updates.html">Updates</a>
         <a href="riding.html">The Riding</a>
         <a href="services.html">Services</a>
         <a href="events.html">Events</a>
         <a href="gallery.html" class="active">Gallery</a>
         <a href="videos.html">Videos</a>
         <a href="contact.html">Contact</a>
+        <a href="newsletter.html">Newsletter</a>
       </nav>
       <a href="contact.html" class="btn btn--primary nav-cta">Get in Touch</a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -93,12 +102,14 @@
   <nav class="mobile-menu" role="navigation" aria-label="Mobile navigation">
     <a href="index.html">Home</a>
     <a href="bio.html">Bio</a>
+    <a href="updates.html">Updates</a>
     <a href="riding.html">The Riding</a>
     <a href="services.html">Services</a>
     <a href="events.html">Events</a>
     <a href="gallery.html">Gallery</a>
     <a href="videos.html">Videos</a>
     <a href="contact.html">Contact</a>
+    <a href="newsletter.html">Newsletter</a>
   </nav>
 
   <main>
@@ -130,98 +141,146 @@
           <button class="filter-btn" data-filter="riding">The Riding</button>
         </div>
 
-        <!-- Gallery Grid -->
+        <!--
+          ══════════════════════════════════════════════════════
+          STAFF: HOW TO ADD A PHOTO
+          ══════════════════════════════════════════════════════
+          1. Save the photo to:  images/gallery/
+             Use a clear filename, e.g. event-smithers-townhall-jul2026.jpg
+             Recommended size: 1200 × 800 px (landscape). Max file: 500 KB.
+
+          2. Copy the template below and paste it at the TOP of the gallery
+             grid (newest photos first). Remove the placeholder div and the
+             "ph-label" span, then fill in your values:
+
+            <div class="gallery-item"
+                 data-category="CATEGORY"
+                 data-caption="Full caption shown in the lightbox – Month Year">
+              <img src="images/gallery/YOUR-FILENAME.jpg"
+                   alt="Brief description of the photo"
+                   loading="lazy" />
+              <div class="gallery-overlay">&#128269;</div>
+            </div>
+
+          3. Set data-category to one of:
+               events      – town halls, forums, public meetings
+               community   – community visits, informal gatherings
+               legislature – Victoria / legislature photos
+               riding      – landscapes and riding scenery
+
+          4. Save gallery.html and refresh to confirm.
+          ══════════════════════════════════════════════════════
+        -->
+
+        <!-- Gallery Grid — newest first -->
         <div class="gallery-grid" id="galleryGrid">
 
-          <!-- Row 1 -->
+          <!-- ── 2026 ─────────────────────────────────────── -->
+
+          <!-- PLACEHOLDER — replace with: images/gallery/event-smithers-townhall-may2026.jpg -->
           <div class="gallery-item" data-category="events" data-caption="Smithers Town Hall – May 2026">
-            <!-- Replace div with: <img src="images/gallery/event-smithers-townhall.jpg" alt="Smithers Town Hall" /> -->
             <div class="gallery-overlay">&#128269;</div>
             <span class="ph-label">Smithers Town Hall, May 2026</span>
           </div>
 
+          <!-- PLACEHOLDER — replace with: images/gallery/community-burnslake-apr2026.jpg -->
           <div class="gallery-item" data-category="community" data-caption="Burns Lake Community Visit – April 2026">
             <div class="gallery-overlay">&#128269;</div>
             <span class="ph-label">Burns Lake Visit, Apr 2026</span>
           </div>
 
-          <div class="gallery-item" data-category="legislature" data-caption="Legislature Session – Spring 2026">
+          <!-- PLACEHOLDER — replace with: images/gallery/event-healthcare-forum-mar2026.jpg -->
+          <div class="gallery-item" data-category="events" data-caption="Healthcare Access Forum – March 2026">
             <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Legislature, Spring 2026</span>
+            <span class="ph-label">Healthcare Forum, Mar 2026</span>
           </div>
 
-          <div class="gallery-item" data-category="riding" data-caption="Bulkley Valley – Winter Landscape">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Bulkley Valley Landscape</span>
-          </div>
-
-          <!-- Row 2 -->
+          <!-- PLACEHOLDER — replace with: images/gallery/community-houston-mar2026.jpg -->
           <div class="gallery-item" data-category="community" data-caption="Houston Community Meeting – March 2026">
             <div class="gallery-overlay">&#128269;</div>
             <span class="ph-label">Houston Meeting, Mar 2026</span>
           </div>
 
-          <div class="gallery-item" data-category="events" data-caption="Healthcare Forum – March 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Healthcare Forum, Mar 2026</span>
-          </div>
-
-          <div class="gallery-item" data-category="riding" data-caption="Stikine River – Summer">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Stikine River</span>
-          </div>
-
-          <div class="gallery-item" data-category="community" data-caption="Telkwa Community Barbecue – 2025">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Telkwa BBQ, 2025</span>
-          </div>
-
-          <!-- Row 3 -->
-          <div class="gallery-item" data-category="legislature" data-caption="Question Period – Winter Session 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Question Period, 2026</span>
-          </div>
-
-          <div class="gallery-item" data-category="riding" data-caption="Hudson Bay Mountain – Smithers">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Hudson Bay Mountain</span>
-          </div>
-
+          <!-- PLACEHOLDER — replace with: images/gallery/event-seniors-forum-feb2026.jpg -->
           <div class="gallery-item" data-category="events" data-caption="Seniors Forum – February 2026">
             <div class="gallery-overlay">&#128269;</div>
             <span class="ph-label">Seniors Forum, Feb 2026</span>
           </div>
 
-          <div class="gallery-item" data-category="community" data-caption="Granisle Community Visit – 2025">
+          <!-- PLACEHOLDER — replace with: images/gallery/leg-question-period-2026.jpg -->
+          <div class="gallery-item" data-category="legislature" data-caption="Question Period – Winter Session 2026">
             <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Granisle Visit, 2025</span>
+            <span class="ph-label">Question Period, 2026</span>
           </div>
 
-          <!-- Row 4 -->
-          <div class="gallery-item" data-category="riding" data-caption="Babine Lake – Lakes District">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Babine Lake</span>
-          </div>
-
+          <!-- PLACEHOLDER — replace with: images/gallery/leg-committee-2026.jpg -->
           <div class="gallery-item" data-category="legislature" data-caption="Committee Hearing – 2026">
             <div class="gallery-overlay">&#128269;</div>
             <span class="ph-label">Committee Hearing, 2026</span>
           </div>
 
+          <!-- PLACEHOLDER — replace with: images/gallery/leg-session-spring2026.jpg -->
+          <div class="gallery-item" data-category="legislature" data-caption="Legislature Session – Spring 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Legislature, Spring 2026</span>
+          </div>
+
+          <!-- PLACEHOLDER — replace with: images/gallery/event-ag-meeting-hazelton-2026.jpg -->
+          <div class="gallery-item" data-category="events" data-caption="Agricultural Meeting – Hazelton 2026">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Ag Meeting, Hazelton 2026</span>
+          </div>
+
+          <!-- ── 2025 ─────────────────────────────────────── -->
+
+          <!-- PLACEHOLDER — replace with: images/gallery/community-telkwa-bbq-2025.jpg -->
+          <div class="gallery-item" data-category="community" data-caption="Telkwa Community Barbecue – 2025">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Telkwa BBQ, 2025</span>
+          </div>
+
+          <!-- PLACEHOLDER — replace with: images/gallery/community-granisle-2025.jpg -->
+          <div class="gallery-item" data-category="community" data-caption="Granisle Community Visit – 2025">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Granisle Visit, 2025</span>
+          </div>
+
+          <!-- PLACEHOLDER — replace with: images/gallery/community-deaselake-2025.jpg -->
           <div class="gallery-item" data-category="community" data-caption="Dease Lake Community Meeting – 2025">
             <div class="gallery-overlay">&#128269;</div>
             <span class="ph-label">Dease Lake, 2025</span>
           </div>
 
-          <div class="gallery-item" data-category="events" data-caption="Agricultural Meeting – Hazelton 2026">
+          <!-- ── Scenic / Riding ────────────────────────── -->
+
+          <!-- PLACEHOLDER — replace with: images/gallery/riding-bulkley-valley.jpg -->
+          <div class="gallery-item" data-category="riding" data-caption="Bulkley Valley – Winter Landscape">
             <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Ag Meeting, Hazelton</span>
+            <span class="ph-label">Bulkley Valley Landscape</span>
+          </div>
+
+          <!-- PLACEHOLDER — replace with: images/gallery/riding-stikine-river.jpg -->
+          <div class="gallery-item" data-category="riding" data-caption="Stikine River – Summer">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Stikine River</span>
+          </div>
+
+          <!-- PLACEHOLDER — replace with: images/gallery/riding-hudson-bay-mountain.jpg -->
+          <div class="gallery-item" data-category="riding" data-caption="Hudson Bay Mountain – Smithers">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Hudson Bay Mountain</span>
+          </div>
+
+          <!-- PLACEHOLDER — replace with: images/gallery/riding-babine-lake.jpg -->
+          <div class="gallery-item" data-category="riding" data-caption="Babine Lake – Lakes District">
+            <div class="gallery-overlay">&#128269;</div>
+            <span class="ph-label">Babine Lake</span>
           </div>
 
         </div>
 
         <p style="text-align:center; margin-top:2rem; font-size:0.875rem; color:var(--light-text);">
-          <em>Photos will appear here as they are added. Replace placeholder tiles with real images.</em>
+          <em>Add photos by following the instructions in the HTML comments above the gallery grid.</em>
         </p>
 
       </div>
@@ -258,17 +317,27 @@
           <div class="footer-brand__name">Sharon Hartwell</div>
           <div class="footer-brand__title">MLA &bull; Bulkley Valley-Stikine</div>
           <p>Serving the communities of Bulkley Valley-Stikine with dedication, integrity, and a strong voice for rural British Columbia.</p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/p/Sharon-Hartwell-MLA-Bulkley-Valley-Stikine-61552851267530/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://x.com/SharonMLA" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
         </div>
         <div class="footer-col">
           <h4>Navigate</h4>
           <ul>
             <li><a href="bio.html">Bio</a></li>
+            <li><a href="updates.html">Updates</a></li>
             <li><a href="riding.html">The Riding</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="videos.html">Videos</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -285,15 +354,14 @@
           <p>1164 Main Street</p>
           <p>Smithers, BC &nbsp;V0J 2N0</p>
           <br />
-          <p>Phone: [Phone Number]</p>
-          <p>Fax: [Fax Number]</p>
+          <p>Phone: (778) 640-1116</p>
           <br />
           <p><a href="contact.html" class="footer-gold-link">Contact Us &rarr;</a></p>
         </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Sharon Hartwell MLA. All rights reserved.</p>
-        <p>MLA for Bulkley Valley-Stikine &bull; Conservative Party of BC</p>
+        <p>Bulkley Valley-Stikine Constituency Office</p>
       </div>
     </div>
   </footer>

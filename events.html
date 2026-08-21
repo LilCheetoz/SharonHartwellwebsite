@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Events & Town Halls | Sharon Hartwell MLA" />
+  <meta property="og:description" content="Upcoming community events, town halls, and meetings with Sharon Hartwell, MLA for Bulkley Valley-Stikine." />
+  <meta property="og:image"       content="images/og-image.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -22,12 +29,14 @@
       <nav class="nav-links" role="navigation" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="bio.html">Bio</a>
+        <a href="updates.html">Updates</a>
         <a href="riding.html">The Riding</a>
         <a href="services.html">Services</a>
         <a href="events.html" class="active">Events</a>
         <a href="gallery.html">Gallery</a>
         <a href="videos.html">Videos</a>
         <a href="contact.html">Contact</a>
+        <a href="newsletter.html">Newsletter</a>
       </nav>
       <a href="contact.html" class="btn btn--primary nav-cta">Get in Touch</a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -38,12 +47,14 @@
   <nav class="mobile-menu" role="navigation" aria-label="Mobile navigation">
     <a href="index.html">Home</a>
     <a href="bio.html">Bio</a>
+    <a href="updates.html">Updates</a>
     <a href="riding.html">The Riding</a>
     <a href="services.html">Services</a>
     <a href="events.html">Events</a>
     <a href="gallery.html">Gallery</a>
     <a href="videos.html">Videos</a>
     <a href="contact.html">Contact</a>
+    <a href="newsletter.html">Newsletter</a>
   </nav>
 
   <main>
@@ -70,71 +81,35 @@
           <div class="divider"></div>
         </div>
 
+        <!--
+          ══════════════════════════════════════════════════════
+          STAFF: HOW TO ADD AN UPCOMING EVENT
+          ══════════════════════════════════════════════════════
+          Copy this template and paste it at the TOP of the
+          events-list below (most upcoming first by date).
+          When an event passes, move the whole block to the
+          "Past Events" section and change the btn text to
+          "Photos" linking to gallery.html.
+
+          <div class="event-item">
+            <div class="event-date">
+              <div class="event-date__month">Mon</div>
+              <div class="event-date__day">DD</div>
+              <div class="event-date__year">YYYY</div>
+            </div>
+            <div class="event-info">
+              <h3>Event Title</h3>
+              <p>
+                <strong>Venue Name</strong> &nbsp;&bull;&nbsp; Time &nbsp;&bull;&nbsp; Focus description<br />
+                <span style="font-size:0.82rem; color:var(--light-text);">One or two sentences about what the event covers.</span>
+              </p>
+            </div>
+            <a href="contact.html" class="btn btn--outline">RSVP</a>
+          </div>
+          ══════════════════════════════════════════════════════
+        -->
+
         <div class="events-list">
-
-          <div class="event-item">
-            <div class="event-date">
-              <div class="event-date__month">Jun</div>
-              <div class="event-date__day">5</div>
-              <div class="event-date__year">2026</div>
-            </div>
-            <div class="event-info">
-              <h3>Smithers Town Hall</h3>
-              <p>
-                <strong>Smithers Community Centre</strong> &nbsp;&bull;&nbsp; 6:30 – 8:30 PM &nbsp;&bull;&nbsp; Open to all constituents<br />
-                <span style="font-size:0.82rem; color:var(--light-text);">Join Sharon for an open discussion on issues affecting the Smithers area. All are welcome.</span>
-              </p>
-            </div>
-            <a href="contact.html" class="btn btn--outline">RSVP</a>
-          </div>
-
-          <div class="event-item">
-            <div class="event-date">
-              <div class="event-date__month">Jun</div>
-              <div class="event-date__day">12</div>
-              <div class="event-date__year">2026</div>
-            </div>
-            <div class="event-info">
-              <h3>Burns Lake Community Roundtable</h3>
-              <p>
-                <strong>Burns Lake Village Hall</strong> &nbsp;&bull;&nbsp; 2:00 – 4:00 PM &nbsp;&bull;&nbsp; Focus: Rural services<br />
-                <span style="font-size:0.82rem; color:var(--light-text);">Discussing healthcare access, road maintenance, and economic development in the Lakes District.</span>
-              </p>
-            </div>
-            <a href="contact.html" class="btn btn--outline">RSVP</a>
-          </div>
-
-          <div class="event-item">
-            <div class="event-date">
-              <div class="event-date__month">Jun</div>
-              <div class="event-date__day">20</div>
-              <div class="event-date__year">2026</div>
-            </div>
-            <div class="event-info">
-              <h3>Houston Seniors' Forum</h3>
-              <p>
-                <strong>Houston Complex</strong> &nbsp;&bull;&nbsp; 10:00 AM – 12:00 PM &nbsp;&bull;&nbsp; Focus: Seniors' services<br />
-                <span style="font-size:0.82rem; color:var(--light-text);">A dedicated forum for seniors and caregivers to raise issues around healthcare, housing, and support programs.</span>
-              </p>
-            </div>
-            <a href="contact.html" class="btn btn--outline">RSVP</a>
-          </div>
-
-          <div class="event-item">
-            <div class="event-date">
-              <div class="event-date__month">Jul</div>
-              <div class="event-date__day">8</div>
-              <div class="event-date__year">2026</div>
-            </div>
-            <div class="event-info">
-              <h3>Hazelton Area Agricultural Meeting</h3>
-              <p>
-                <strong>Hazelton Agriplex</strong> &nbsp;&bull;&nbsp; 1:00 – 3:00 PM &nbsp;&bull;&nbsp; Focus: Farming &amp; ranching issues<br />
-                <span style="font-size:0.82rem; color:var(--light-text);">Meeting with farmers, ranchers, and agricultural producers to discuss challenges and provincial support programs.</span>
-              </p>
-            </div>
-            <a href="contact.html" class="btn btn--outline">RSVP</a>
-          </div>
 
           <div class="event-item">
             <div class="event-date">
@@ -180,7 +155,66 @@
           <div class="divider"></div>
         </div>
 
+        <!--
+          STAFF: When an upcoming event passes, cut its block from the
+          Upcoming section above and paste it here (most recent first).
+          Change the btn text to "Photos" linking to gallery.html,
+          or remove the btn entirely if there are no photos.
+        -->
+
         <div class="events-list">
+
+          <div class="event-item" style="opacity:0.7; border-left-color:var(--border);">
+            <div class="event-date" style="background:var(--medium-text);">
+              <div class="event-date__month">Jul</div>
+              <div class="event-date__day">8</div>
+              <div class="event-date__year">2026</div>
+            </div>
+            <div class="event-info">
+              <h3>Hazelton Area Agricultural Meeting</h3>
+              <p>Hazelton Agriplex &nbsp;&bull;&nbsp; Meeting with farmers, ranchers, and agricultural producers</p>
+            </div>
+            <a href="gallery.html" class="btn btn--outline" style="opacity:1;">Photos</a>
+          </div>
+
+          <div class="event-item" style="opacity:0.7; border-left-color:var(--border);">
+            <div class="event-date" style="background:var(--medium-text);">
+              <div class="event-date__month">Jun</div>
+              <div class="event-date__day">20</div>
+              <div class="event-date__year">2026</div>
+            </div>
+            <div class="event-info">
+              <h3>Houston Seniors' Forum</h3>
+              <p>Houston Complex &nbsp;&bull;&nbsp; Forum for seniors and caregivers on healthcare, housing, and support programs</p>
+            </div>
+            <a href="gallery.html" class="btn btn--outline" style="opacity:1;">Photos</a>
+          </div>
+
+          <div class="event-item" style="opacity:0.7; border-left-color:var(--border);">
+            <div class="event-date" style="background:var(--medium-text);">
+              <div class="event-date__month">Jun</div>
+              <div class="event-date__day">12</div>
+              <div class="event-date__year">2026</div>
+            </div>
+            <div class="event-info">
+              <h3>Burns Lake Community Roundtable</h3>
+              <p>Burns Lake Village Hall &nbsp;&bull;&nbsp; Healthcare access, road maintenance, and economic development in the Lakes District</p>
+            </div>
+            <a href="gallery.html" class="btn btn--outline" style="opacity:1;">Photos</a>
+          </div>
+
+          <div class="event-item" style="opacity:0.7; border-left-color:var(--border);">
+            <div class="event-date" style="background:var(--medium-text);">
+              <div class="event-date__month">Jun</div>
+              <div class="event-date__day">5</div>
+              <div class="event-date__year">2026</div>
+            </div>
+            <div class="event-info">
+              <h3>Smithers Town Hall</h3>
+              <p>Smithers Community Centre &nbsp;&bull;&nbsp; Open discussion on issues affecting the Smithers area</p>
+            </div>
+            <a href="gallery.html" class="btn btn--outline" style="opacity:1;">Photos</a>
+          </div>
 
           <div class="event-item" style="opacity:0.7; border-left-color:var(--border);">
             <div class="event-date" style="background:var(--medium-text);">
@@ -259,17 +293,27 @@
           <div class="footer-brand__name">Sharon Hartwell</div>
           <div class="footer-brand__title">MLA &bull; Bulkley Valley-Stikine</div>
           <p>Serving the communities of Bulkley Valley-Stikine with dedication, integrity, and a strong voice for rural British Columbia.</p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/p/Sharon-Hartwell-MLA-Bulkley-Valley-Stikine-61552851267530/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://x.com/SharonMLA" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
         </div>
         <div class="footer-col">
           <h4>Navigate</h4>
           <ul>
             <li><a href="bio.html">Bio</a></li>
+            <li><a href="updates.html">Updates</a></li>
             <li><a href="riding.html">The Riding</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="videos.html">Videos</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -286,15 +330,14 @@
           <p>1164 Main Street</p>
           <p>Smithers, BC &nbsp;V0J 2N0</p>
           <br />
-          <p>Phone: [Phone Number]</p>
-          <p>Fax: [Fax Number]</p>
+          <p>Phone: (778) 640-1116</p>
           <br />
           <p><a href="contact.html" class="footer-gold-link">Contact Us &rarr;</a></p>
         </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Sharon Hartwell MLA. All rights reserved.</p>
-        <p>MLA for Bulkley Valley-Stikine &bull; Conservative Party of BC</p>
+        <p>Bulkley Valley-Stikine Constituency Office</p>
       </div>
     </div>
   </footer>

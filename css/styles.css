@@ -32,6 +32,7 @@
   --radius-lg:   12px;
   --radius-pill: 999px;
   --transition:  220ms ease;
+  --card-bg:     var(--white);
 }
 
 /* --- Reset --- */
@@ -247,33 +248,53 @@ body.has-announce   { padding-top: calc(var(--nav-height) + 38px); }
 
 /* --- Home Hero --- */
 .home-hero {
-  background: var(--navy);
-  min-height: 80vh;
+  /* To add a regional background image, place a photo at images/hero-bg.jpg
+     (e.g. Hudson Bay Mountain or a NW BC landscape) and uncomment the line below: */
+  /* background-image: url('../images/hero-bg.jpg'); */
+  background-color: var(--navy);
+  background-size: cover;
+  background-position: center top;
+  min-height: 88vh;
   display: flex;
   align-items: center;
   position: relative;
   margin-top: calc(-1 * var(--nav-height));
   padding-top: var(--nav-height);
 }
+.home-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,15,30,0.82) 0%, rgba(0,15,30,0.55) 55%, rgba(0,15,30,0.25) 100%);
+  z-index: 0;
+}
 .home-hero .container { position: relative; z-index: 1; padding: 4rem 1.5rem; width: 100%; }
 .hero-layout          { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; }
 .hero-text            { color: var(--white); }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  color: var(--bc-gold);
-  font-size: 0.75rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.13em;
-  margin-bottom: 1.25rem;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  margin-bottom: 1rem;
 }
 .hero-name {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(2.75rem, 5.5vw, 4.25rem);
   font-weight: 700; color: var(--white);
-  line-height: 1.05; margin-bottom: 0.65rem;
+  line-height: 1.05; margin-bottom: 0.15rem;
   letter-spacing: -0.01em;
 }
-.hero-title  { font-size: 1.1rem; color: var(--bc-gold); font-weight: 500; margin-bottom: 0.4rem; font-family: 'Inter', sans-serif; }
-.hero-riding { font-size: 0.95rem; color: rgba(255,255,255,0.55); margin-bottom: 2rem; font-weight: 400; }
+.hero-mla {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  font-weight: 700; color: var(--bc-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1; margin-bottom: 1.1rem;
+}
+.hero-title  { font-size: 1rem; color: rgba(255,255,255,0.7); font-weight: 400; margin-bottom: 0.3rem; font-family: 'Inter', sans-serif; }
+.hero-riding { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-bottom: 2rem; font-weight: 400; letter-spacing: 0.02em; }
 .hero-quote {
   font-size: 1.05rem; color: rgba(255,255,255,0.8);
   font-style: italic; line-height: 1.75;
@@ -492,6 +513,235 @@ body.has-announce   { padding-top: calc(var(--nav-height) + 38px); }
 .highlight-card h4 { font-size: 0.73rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--medium-text); margin-bottom: 0.35rem; font-family: 'Inter', system-ui, sans-serif; }
 .highlight-card p  { font-size: 0.93rem; font-weight: 600; color: var(--dark-text); margin: 0; }
 
+/* --- Update Feed (updates.html) --- */
+.update-card {
+  padding: 2rem 0;
+}
+.update-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.update-card__date {
+  font-size: 0.8rem;
+  color: var(--medium-text);
+  font-weight: 500;
+}
+.update-card__category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+}
+.update-cat--legislature { background: #dce8f8; color: #1a4a80; }
+.update-cat--advocacy    { background: #fef3d0; color: #7a5200; }
+.update-cat--info        { background: #d8f5e8; color: #1a5c38; }
+.update-cat--community   { background: #ede8f8; color: #4a2a80; }
+.update-card__title {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  margin-bottom: 1rem;
+  color: var(--dark-text);
+}
+.update-card__body p    { margin-bottom: 0.85rem; font-size: 0.95rem; }
+.update-card__body p:last-child { margin-bottom: 0; }
+.update-card__body a    { color: var(--navy); }
+.update-card__body a:hover { text-decoration: underline; }
+.update-card__footer {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.update-card__contact {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+.update-card__contact:hover { text-decoration: underline; }
+.update-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+body.dark-mode .update-cat--legislature { background: #1a2e4a; color: #90b8f0; }
+body.dark-mode .update-cat--advocacy    { background: #3a2c00; color: #f0c850; }
+body.dark-mode .update-cat--info        { background: #0d2e1a; color: #60d090; }
+body.dark-mode .update-cat--community   { background: #1e1040; color: #b090f0; }
+body.dark-mode .update-card__title      { color: var(--dark-text); }
+body.dark-mode .update-card__body a     { color: #a0c0ff; }
+body.dark-mode .update-card__contact    { color: #a0c0ff; }
+body.dark-mode .update-card__footer     { border-color: var(--border); }
+body.dark-mode .update-divider          { border-color: var(--border); }
+
+/* --- Resource Cards (Services page) --- */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.resource-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.resource-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: var(--navy);
+  padding: 1rem 1.5rem;
+}
+.resource-card__header span { font-size: 1.45rem; line-height: 1; }
+.resource-card__header h3 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin: 0;
+}
+.resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.resource-list li {
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.resource-list li:last-child { border-bottom: none; }
+.resource-list li strong {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--dark-text);
+  margin-bottom: 0.18rem;
+}
+.resource-list a { color: var(--navy); }
+.resource-list a:hover { text-decoration: underline; }
+.resource-phone {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--bc-red);
+  letter-spacing: 0.02em;
+}
+body.dark-mode .resource-card         { background: var(--card-bg); border-color: var(--border); }
+body.dark-mode .resource-card__header { background: var(--navy-dark); }
+body.dark-mode .resource-list li      { border-color: var(--border); }
+body.dark-mode .resource-list li strong { color: var(--dark-text); }
+body.dark-mode .resource-list a       { color: #a0c0ff; }
+
+/* --- Key Issues Grid --- */
+.key-issues-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.key-issue-card {
+  padding: 1.75rem;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+.key-issue-card h3 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  color: var(--dark-text);
+}
+.key-issue-card .issue-push-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--bc-gold);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.key-issue-card ul {
+  font-size: 0.845rem;
+  padding-left: 1.2rem;
+  list-style: disc;
+  line-height: 1.9;
+}
+
+/* --- Legislature Activity (Bio page) --- */
+.leg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+.leg-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--bc-gold);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+}
+.leg-card__date {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--medium-text);
+  margin-bottom: 0.55rem;
+  font-family: 'Inter', sans-serif;
+}
+.leg-card__type {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: var(--navy);
+  background: var(--light-bg);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.85rem;
+}
+.leg-card h4 { margin-bottom: 0.6rem; font-size: 0.97rem; }
+.leg-card p  { font-size: 0.88rem; line-height: 1.7; }
+
+/* --- Community Action Grid (Bio page) --- */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.action-photo {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--light-bg);
+}
+.action-photo__placeholder {
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--medium-text);
+  background: var(--light-bg);
+}
+.action-photo__label {
+  padding: 0.85rem 1rem;
+  background: var(--white);
+}
+.action-photo__place {
+  display: block;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--dark-text);
+}
+.action-photo__event {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--medium-text);
+  margin-top: 0.2rem;
+}
+
 /* --- Riding --- */
 .riding-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
 .stat-card {
@@ -507,12 +757,13 @@ body.has-announce   { padding-top: calc(var(--nav-height) + 38px); }
 .community-card {
   padding: 1.35rem; background: var(--white);
   border: 1px solid var(--border); border-radius: var(--radius-lg);
-  text-align: center;
+  text-align: center; display: block; text-decoration: none; color: inherit;
   transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
-.community-card:hover { border-color: var(--navy); }
-.community-card h3    { font-size: 1rem; font-family: 'Inter', system-ui, sans-serif; font-weight: 600; margin-bottom: 0.2rem; }
+.community-card:hover { border-color: var(--navy); box-shadow: var(--shadow-sm); transform: translateY(-2px); text-decoration: none; }
+.community-card h3    { font-size: 1rem; font-family: 'Inter', system-ui, sans-serif; font-weight: 600; margin-bottom: 0.2rem; color: var(--dark-text); }
 .community-card p     { font-size: 0.82rem; }
+.community-card .community-link { font-size: 0.75rem; color: var(--navy); font-weight: 600; margin-top: 0.5rem; display: block; }
 .map-placeholder {
   width: 100%; height: 340px;
   background: linear-gradient(135deg, #dae5f5 0%, #bcd0ea 100%);
@@ -579,6 +830,9 @@ body.has-announce   { padding-top: calc(var(--nav-height) + 38px); }
 .footer-col p            { font-size: 0.875rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem; line-height: 1.6; }
 .footer-gold-link        { color: var(--bc-gold) !important; }
 .footer-gold-link:hover  { color: var(--bc-gold-dark) !important; text-decoration: none !important; }
+.social-icons { display: flex; gap: 0.65rem; margin-top: 1.25rem; }
+.social-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); transition: background var(--transition), color var(--transition); }
+.social-icons a:hover { background: var(--bc-gold); color: var(--charcoal); text-decoration: none; }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.07);
   padding-top: 2rem;
@@ -602,6 +856,14 @@ body.has-announce   { padding-top: calc(var(--nav-height) + 38px); }
 }
 .view-all:hover { gap: 0.6rem; text-decoration: none; }
 
+/* Two-column content grid (used across multiple pages as inline style replacement) */
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -615,6 +877,7 @@ body.has-announce   { padding-top: calc(var(--nav-height) + 38px); }
   :root { --nav-height: 64px; }
   .nav-links, .nav-cta { display: none; }
   .nav-toggle          { display: flex; }
+  .two-col-grid        { grid-template-columns: 1fr; gap: 2rem; }
   .section             { padding: 4rem 0; }
   .hero-layout         { grid-template-columns: 1fr; }
   .hero-photo-wrap     { display: none; }
@@ -629,6 +892,9 @@ body.has-announce   { padding-top: calc(var(--nav-height) + 38px); }
   .footer-grid         { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
   .form-row            { grid-template-columns: 1fr; }
   .cta-section         { padding: 4.5rem 0; }
+  .action-grid         { grid-template-columns: repeat(2, 1fr); }
+  .key-issues-grid     { grid-template-columns: repeat(2, 1fr); }
+  .resource-grid       { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
@@ -637,6 +903,8 @@ body.has-announce   { padding-top: calc(var(--nav-height) + 38px); }
   .footer-grid     { grid-template-columns: 1fr; }
   .footer-bottom   { flex-direction: column; text-align: center; }
   .riding-stats    { grid-template-columns: repeat(2, 1fr); }
+  .action-grid         { grid-template-columns: 1fr; }
+  .key-issues-grid     { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
@@ -665,8 +933,9 @@ body.dark-mode {
   --light-bg:    #16161d;
   --border:      #27273a;
   --dark-text:   #e0dff0;
-  --medium-text: #8080a0;
-  --light-text:  #4e4e68;
+  --medium-text: #b8b8d0;
+  --light-text:  #606080;
+  --card-bg:     #1c1c26;
   background: #111117;
   color: var(--dark-text);
 }
@@ -731,3 +1000,43 @@ body.dark-mode .highlight-card          { background: var(--light-bg); }
 
 /* Contact info icon */
 body.dark-mode .contact-info__icon      { background: #1c1c26; }
+
+/* Key issue cards */
+body.dark-mode .key-issue-card          { background: var(--card-bg); border-color: var(--border); }
+body.dark-mode .key-issue-card h3       { color: var(--dark-text); }
+
+/* Legislature cards */
+body.dark-mode .leg-card                { background: #1c1c26; border-color: var(--border); }
+body.dark-mode .leg-card__type          { background: var(--light-bg); color: #a0c0ff; }
+body.dark-mode .leg-card h4             { color: var(--dark-text); }
+
+/* Community action photo grid */
+body.dark-mode .action-photo            { background: var(--light-bg); border-color: var(--border); }
+body.dark-mode .action-photo__placeholder { background: var(--light-bg); }
+body.dark-mode .action-photo__label     { background: #1c1c26; }
+body.dark-mode .action-photo__place     { color: var(--dark-text); }
+
+/* Photo / image placeholders */
+body.dark-mode .gallery-item   { background: linear-gradient(135deg, #1c2a3a 0%, #162030 100%); }
+body.dark-mode .bio-photo      { background: linear-gradient(145deg, #1a2535 0%, #131c28 100%); }
+
+/* Gallery filter buttons */
+body.dark-mode .filter-btn               { background: var(--card-bg); border-color: var(--border); color: var(--medium-text); }
+body.dark-mode .filter-btn.active,
+body.dark-mode .filter-btn:hover         { background: var(--dark-text); color: #111117; border-color: var(--dark-text); }
+
+/* Mobile nav link hover */
+body.dark-mode .mobile-menu a:hover      { color: var(--dark-text); }
+
+/* Plain paragraph links (not buttons or nav) */
+body.dark-mode p a                       { color: #a0c0ff; }
+body.dark-mode p a:hover                 { color: #c0d8ff; }
+
+/* Form success message */
+body.dark-mode .form-success             { background: #0d2e1a; border-color: #1a4a2a; }
+body.dark-mode .form-success h3          { color: #60d090; }
+body.dark-mode .form-success p           { color: #90c0a0; }
+
+/* Hours table */
+body.dark-mode .hours-table td           { color: var(--medium-text); }
+body.dark-mode .hours-table td:first-child { color: var(--dark-text); }
