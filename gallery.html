@@ -141,147 +141,10 @@
           <button class="filter-btn" data-filter="riding">The Riding</button>
         </div>
 
-        <!--
-          ══════════════════════════════════════════════════════
-          STAFF: HOW TO ADD A PHOTO
-          ══════════════════════════════════════════════════════
-          1. Save the photo to:  images/gallery/
-             Use a clear filename, e.g. event-smithers-townhall-jul2026.jpg
-             Recommended size: 1200 × 800 px (landscape). Max file: 500 KB.
-
-          2. Copy the template below and paste it at the TOP of the gallery
-             grid (newest photos first). Remove the placeholder div and the
-             "ph-label" span, then fill in your values:
-
-            <div class="gallery-item"
-                 data-category="CATEGORY"
-                 data-caption="Full caption shown in the lightbox – Month Year">
-              <img src="images/gallery/YOUR-FILENAME.jpg"
-                   alt="Brief description of the photo"
-                   loading="lazy" />
-              <div class="gallery-overlay">&#128269;</div>
-            </div>
-
-          3. Set data-category to one of:
-               events      – town halls, forums, public meetings
-               community   – community visits, informal gatherings
-               legislature – Victoria / legislature photos
-               riding      – landscapes and riding scenery
-
-          4. Save gallery.html and refresh to confirm.
-          ══════════════════════════════════════════════════════
-        -->
-
-        <!-- Gallery Grid — newest first -->
+        <!-- Gallery Grid — populated from data/gallery.json -->
         <div class="gallery-grid" id="galleryGrid">
-
-          <!-- ── 2026 ─────────────────────────────────────── -->
-
-          <!-- PLACEHOLDER — replace with: images/gallery/event-smithers-townhall-may2026.jpg -->
-          <div class="gallery-item" data-category="events" data-caption="Smithers Town Hall – May 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Smithers Town Hall, May 2026</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/community-burnslake-apr2026.jpg -->
-          <div class="gallery-item" data-category="community" data-caption="Burns Lake Community Visit – April 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Burns Lake Visit, Apr 2026</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/event-healthcare-forum-mar2026.jpg -->
-          <div class="gallery-item" data-category="events" data-caption="Healthcare Access Forum – March 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Healthcare Forum, Mar 2026</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/community-houston-mar2026.jpg -->
-          <div class="gallery-item" data-category="community" data-caption="Houston Community Meeting – March 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Houston Meeting, Mar 2026</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/event-seniors-forum-feb2026.jpg -->
-          <div class="gallery-item" data-category="events" data-caption="Seniors Forum – February 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Seniors Forum, Feb 2026</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/leg-question-period-2026.jpg -->
-          <div class="gallery-item" data-category="legislature" data-caption="Question Period – Winter Session 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Question Period, 2026</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/leg-committee-2026.jpg -->
-          <div class="gallery-item" data-category="legislature" data-caption="Committee Hearing – 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Committee Hearing, 2026</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/leg-session-spring2026.jpg -->
-          <div class="gallery-item" data-category="legislature" data-caption="Legislature Session – Spring 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Legislature, Spring 2026</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/event-ag-meeting-hazelton-2026.jpg -->
-          <div class="gallery-item" data-category="events" data-caption="Agricultural Meeting – Hazelton 2026">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Ag Meeting, Hazelton 2026</span>
-          </div>
-
-          <!-- ── 2025 ─────────────────────────────────────── -->
-
-          <!-- PLACEHOLDER — replace with: images/gallery/community-telkwa-bbq-2025.jpg -->
-          <div class="gallery-item" data-category="community" data-caption="Telkwa Community Barbecue – 2025">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Telkwa BBQ, 2025</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/community-granisle-2025.jpg -->
-          <div class="gallery-item" data-category="community" data-caption="Granisle Community Visit – 2025">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Granisle Visit, 2025</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/community-deaselake-2025.jpg -->
-          <div class="gallery-item" data-category="community" data-caption="Dease Lake Community Meeting – 2025">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Dease Lake, 2025</span>
-          </div>
-
-          <!-- ── Scenic / Riding ────────────────────────── -->
-
-          <!-- PLACEHOLDER — replace with: images/gallery/riding-bulkley-valley.jpg -->
-          <div class="gallery-item" data-category="riding" data-caption="Bulkley Valley – Winter Landscape">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Bulkley Valley Landscape</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/riding-stikine-river.jpg -->
-          <div class="gallery-item" data-category="riding" data-caption="Stikine River – Summer">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Stikine River</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/riding-hudson-bay-mountain.jpg -->
-          <div class="gallery-item" data-category="riding" data-caption="Hudson Bay Mountain – Smithers">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Hudson Bay Mountain</span>
-          </div>
-
-          <!-- PLACEHOLDER — replace with: images/gallery/riding-babine-lake.jpg -->
-          <div class="gallery-item" data-category="riding" data-caption="Babine Lake – Lakes District">
-            <div class="gallery-overlay">&#128269;</div>
-            <span class="ph-label">Babine Lake</span>
-          </div>
-
+          <div id="gallery-loading" style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--light-text);font-size:0.875rem;">Loading photos…</div>
         </div>
-
-        <p style="text-align:center; margin-top:2rem; font-size:0.875rem; color:var(--light-text);">
-          <em>Add photos by following the instructions in the HTML comments above the gallery grid.</em>
-        </p>
 
       </div>
     </section>
@@ -304,7 +167,7 @@
   <div class="lightbox" id="lightbox" role="dialog" aria-label="Photo lightbox" aria-modal="true">
     <div class="lightbox__inner">
       <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
-      <div class="lightbox__img" id="lightboxImg" style="width:600px;max-width:90vw;aspect-ratio:4/3;background:linear-gradient(135deg,#1a4d8c,#2a6db5);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.9rem;"></div>
+      <img class="lightbox__img" id="lightboxImg" src="" alt="" />
       <p class="lightbox__caption" id="lightboxCaption"></p>
     </div>
   </div>
@@ -368,44 +231,61 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Gallery filter
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox        = document.getElementById('lightbox');
+    const lightboxImg     = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose   = document.getElementById('lightboxClose');
+    const filterBtns      = document.querySelectorAll('.filter-btn');
+    let activeFilter      = 'all';
 
-    filterBtns.forEach((btn) => {
+    function openLightbox(src, caption, alt) {
+      lightboxImg.src = src; lightboxImg.alt = alt || caption;
+      lightboxCaption.textContent = caption;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        filterBtns.forEach((b) => b.classList.remove('active'));
+        filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        galleryItems.forEach((item) => {
-          item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
+        activeFilter = btn.dataset.filter;
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          item.style.display = (activeFilter === 'all' || item.dataset.category === activeFilter) ? '' : 'none';
         });
       });
     });
 
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-    const lightboxClose = document.getElementById('lightboxClose');
+    fetch('data/gallery.json')
+      .then(r => r.json())
+      .then(items => {
+        const grid = document.getElementById('galleryGrid');
+        if (!items.length) {
+          grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--light-text);font-size:0.875rem;padding:2rem;">Photos coming soon.</p>';
+          return;
+        }
+        grid.innerHTML = items.map(g => `
+          <div class="gallery-item" data-category="${g.category}" data-caption="${g.caption.replace(/"/g,'&quot;')}" data-src="images/gallery/${g.filename}">
+            <img src="images/gallery/${g.filename}" alt="${g.caption.replace(/"/g,'&quot;')}" loading="lazy" />
+            <div class="gallery-overlay">&#128269;</div>
+          </div>`).join('');
 
-    galleryItems.forEach((item) => {
-      item.addEventListener('click', () => {
-        lightboxImg.textContent = item.querySelector('.ph-label')?.textContent || 'Photo';
-        lightboxCaption.textContent = item.dataset.caption || '';
-        lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          item.addEventListener('click', () => {
+            openLightbox(item.dataset.src, item.dataset.caption, item.querySelector('img')?.alt || '');
+          });
+          if (activeFilter !== 'all' && item.dataset.category !== activeFilter) {
+            item.style.display = 'none';
+          }
+        });
+      })
+      .catch(() => {
+        document.getElementById('galleryGrid').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--light-text);font-size:0.875rem;padding:2rem;">Photos coming soon.</p>';
       });
-    });
-
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>
