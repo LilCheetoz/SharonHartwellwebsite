@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Portal | Sharon Hartwell MLA</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #003366; --gold: #FCBA19; --bg: #f4f4f8; --white: #fff;
+      --border: #dde1e7; --text: #1a1a2e; --muted: #6b7280;
+      --success-bg: #d1fae5; --success: #065f46;
+      --error-bg: #fee2e2; --error: #991b1b;
+      --info-bg: #dbeafe; --info: #1e40af;
+      --radius: 8px;
+    }
+    body { font-family: system-ui, -apple-system, 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── Login ── */
+    #screen-login { min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--navy); }
+    .login-box { background:var(--white); border-radius:12px; padding:2.5rem; width:100%; max-width:360px; box-shadow:0 20px 60px rgba(0,0,0,0.35); }
+    .login-logo { text-align:center; margin-bottom:1.75rem; }
+    .login-logo svg { display:block; margin:0 auto 0.75rem; }
+    .login-logo .name { font-size:1.1rem; font-weight:700; color:var(--navy); }
+    .login-logo .sub { font-size:0.78rem; color:var(--muted); margin-top:0.2rem; }
+    .login-heading { font-size:0.95rem; font-weight:600; color:var(--muted); text-align:center; margin-bottom:1.25rem; }
+
+    /* ── Setup ── */
+    #screen-setup { min-height:100vh; display:none; align-items:center; justify-content:center; background:var(--bg); }
+    .setup-box { background:var(--white); border-radius:12px; padding:2.5rem; width:100%; max-width:500px; box-shadow:0 4px 24px rgba(0,0,0,0.1); }
+    .setup-box h2 { font-size:1.25rem; margin-bottom:0.5rem; }
+    .setup-box > p { color:var(--muted); font-size:0.875rem; line-height:1.65; margin-bottom:1.5rem; }
+
+    /* ── Admin layout ── */
+    #screen-admin { display:none; min-height:100vh; }
+    .admin-wrap { display:flex; min-height:100vh; }
+
+    .sidebar { width:220px; background:var(--navy); color:#fff; flex-shrink:0; display:flex; flex-direction:column; position:fixed; top:0; left:0; bottom:0; overflow-y:auto; }
+    .sb-brand { padding:1.25rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.1); }
+    .sb-brand .name { font-size:0.9rem; font-weight:700; line-height:1.3; }
+    .sb-brand .sub { font-size:0.7rem; color:rgba(255,255,255,0.55); margin-top:0.2rem; }
+    .sb-brand .badge { display:inline-block; background:var(--gold); color:var(--navy); font-size:0.62rem; font-weight:800; padding:0.15rem 0.5rem; border-radius:4px; margin-top:0.5rem; text-transform:uppercase; letter-spacing:0.06em; }
+    .sb-nav { flex:1; padding:0.75rem 0; }
+    .sb-btn { display:flex; align-items:center; gap:0.6rem; width:100%; padding:0.7rem 1.5rem; background:none; border:none; border-right:3px solid transparent; color:rgba(255,255,255,0.65); font-size:0.85rem; cursor:pointer; text-align:left; transition:all 0.15s; }
+    .sb-btn:hover { background:rgba(255,255,255,0.08); color:#fff; }
+    .sb-btn.active { background:rgba(255,255,255,0.12); color:#fff; border-right-color:var(--gold); }
+    .sb-footer { padding:1rem 1.5rem; border-top:1px solid rgba(255,255,255,0.1); }
+    .sb-footer button { width:100%; background:none; border:1px solid rgba(255,255,255,0.25); color:rgba(255,255,255,0.65); font-size:0.8rem; padding:0.45rem 0; border-radius:6px; cursor:pointer; }
+    .sb-footer button:hover { border-color:rgba(255,255,255,0.5); color:#fff; }
+
+    .admin-main { flex:1; margin-left:220px; padding:2rem 2.25rem; }
+    .tab-pane { display:none; }
+    .tab-pane.active { display:block; }
+
+    /* ── Common components ── */
+    .page-hd { margin-bottom:2rem; }
+    .page-hd h1 { font-size:1.4rem; font-weight:700; }
+    .page-hd p { color:var(--muted); font-size:0.875rem; margin-top:0.25rem; }
+
+    .card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-bottom:1.5rem; }
+    .card-hd { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border); }
+    .card-hd h3 { font-size:0.95rem; font-weight:600; }
+
+    .fg { margin-bottom:1rem; }
+    .fg label { display:block; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:0.35rem; }
+    .fg input, .fg textarea, .fg select { width:100%; padding:0.55rem 0.8rem; border:1px solid var(--border); border-radius:6px; font-size:0.875rem; font-family:inherit; color:var(--text); transition:border-color 0.15s; background:var(--white); }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { outline:none; border-color:var(--navy); box-shadow:0 0 0 3px rgba(0,51,102,0.08); }
+    .fg textarea { min-height:90px; resize:vertical; }
+    .row2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+    .btn { display:inline-flex; align-items:center; gap:0.4rem; padding:0.5rem 1.1rem; border-radius:6px; font-size:0.85rem; font-weight:600; cursor:pointer; border:none; transition:all 0.15s; font-family:inherit; }
+    .btn-primary { background:var(--navy); color:#fff; }
+    .btn-primary:hover { background:#002244; }
+    .btn-gold { background:var(--gold); color:var(--navy); }
+    .btn-outline { background:none; border:1px solid var(--border); color:var(--text); }
+    .btn-outline:hover { border-color:#999; }
+    .btn-danger { background:#ef4444; color:#fff; }
+    .btn-danger:hover { background:#dc2626; }
+    .btn-sm { padding:0.3rem 0.7rem; font-size:0.78rem; }
+
+    .toast { padding:0.7rem 1rem; border-radius:6px; font-size:0.85rem; margin-bottom:1.25rem; display:none; }
+    .toast.success { background:var(--success-bg); color:var(--success); border:1px solid #a7f3d0; }
+    .toast.error { background:var(--error-bg); color:var(--error); border:1px solid #fca5a5; }
+    .toast.info { background:var(--info-bg); color:var(--info); border:1px solid #93c5fd; }
+
+    .empty { padding:1.5rem; text-align:center; color:var(--muted); font-size:0.875rem; }
+
+    /* ── Event rows ── */
+    .ev-row { display:flex; align-items:center; gap:0.9rem; padding:0.8rem 0; border-bottom:1px solid var(--border); }
+    .ev-row:last-child { border-bottom:none; }
+    .ev-badge { background:var(--navy); color:#fff; border-radius:6px; padding:0.35rem 0.6rem; text-align:center; font-size:0.68rem; font-weight:700; min-width:48px; flex-shrink:0; line-height:1.5; }
+    .ev-badge.past { background:#9ca3af; }
+    .ev-body { flex:1; min-width:0; }
+    .ev-body strong { font-size:0.88rem; display:block; }
+    .ev-body small { color:var(--muted); font-size:0.76rem; }
+    .ev-actions { display:flex; gap:0.4rem; flex-shrink:0; }
+
+    /* ── Update rows ── */
+    .upd-row { display:flex; align-items:flex-start; gap:0.9rem; padding:0.8rem 0; border-bottom:1px solid var(--border); }
+    .upd-row:last-child { border-bottom:none; }
+    .cat-pill { font-size:0.68rem; font-weight:700; padding:0.2rem 0.5rem; border-radius:4px; text-transform:uppercase; letter-spacing:0.05em; flex-shrink:0; margin-top:0.15rem; }
+    .cat-info { background:#dbeafe; color:#1e40af; }
+    .cat-legislature { background:#ede9fe; color:#5b21b6; }
+    .cat-advocacy { background:#fef3c7; color:#92400e; }
+
+    /* ── Gallery rows ── */
+    .gal-row { display:flex; align-items:center; gap:0.9rem; padding:0.8rem 0; border-bottom:1px solid var(--border); }
+    .gal-row:last-child { border-bottom:none; }
+    .gal-thumb { width:48px; height:48px; border-radius:6px; background:#e5e7eb; flex-shrink:0; overflow:hidden; }
+    .gal-thumb img { width:100%; height:100%; object-fit:cover; }
+
+    /* ── Info box ── */
+    .infobox { background:#fffbeb; border:1px solid #fde68a; border-radius:var(--radius); padding:1rem 1.25rem; font-size:0.84rem; line-height:1.7; margin-bottom:1.5rem; }
+    .infobox strong { color:#92400e; }
+    ol.steps { padding-left:1.25rem; margin-top:0.5rem; }
+    ol.steps li { margin-bottom:0.35rem; }
+    code { background:#f3f4f6; padding:0.1rem 0.35rem; border-radius:3px; font-size:0.82em; font-family:monospace; }
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══════════════════════════════════════════════════ -->
+<div id="screen-login">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg width="52" height="52" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="32" fill="#003366"/>
+        <text x="32" y="42" font-family="Georgia,serif" font-size="26" font-weight="700" fill="#FCBA19" text-anchor="middle">SH</text>
+      </svg>
+      <div class="name">Sharon Hartwell MLA</div>
+      <div class="sub">Constituency Office Admin Portal</div>
+    </div>
+    <div class="login-heading">Sign In</div>
+    <div id="login-err" class="toast error"></div>
+    <div class="fg"><label>Username</label><input id="l-user" type="text" autocomplete="username" placeholder="admin" /></div>
+    <div class="fg"><label>Password</label><input id="l-pass" type="password" autocomplete="current-password" placeholder="••••••" /></div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem;" onclick="doLogin()">Sign In</button>
+  </div>
+</div>
+
+<!-- ══ SETUP ═══════════════════════════════════════════════════ -->
+<div id="screen-setup">
+  <div class="setup-box">
+    <h2>Connect to GitHub</h2>
+    <p>This portal saves changes directly to GitHub so Vercel redeploys automatically. You need a GitHub Personal Access Token with <strong>Contents: Read &amp; write</strong> permission on the <code>LilCheetoz/SharonHartwellwebsite</code> repo.</p>
+    <div class="infobox">
+      <strong>How to create a token:</strong>
+      <ol class="steps">
+        <li>Go to <strong>github.com → Settings → Developer settings → Personal access tokens → Fine-grained tokens</strong></li>
+        <li>Click <strong>Generate new token</strong></li>
+        <li>Under Repository access choose <strong>Only select repositories</strong> → pick <code>SharonHartwellwebsite</code></li>
+        <li>Under Permissions set <strong>Contents → Read and write</strong></li>
+        <li>Generate and paste the token below</li>
+      </ol>
+    </div>
+    <div id="setup-err" class="toast error"></div>
+    <div id="setup-info" class="toast info"></div>
+    <div class="fg"><label>GitHub Personal Access Token</label><input id="s-token" type="password" placeholder="github_pat_..." /></div>
+    <div style="display:flex;gap:0.75rem;margin-top:0.5rem;">
+      <button class="btn btn-primary" onclick="doSetup()">Connect &amp; Continue</button>
+      <button class="btn btn-outline" onclick="doLogout()">Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN ═══════════════════════════════════════════════════ -->
+<div id="screen-admin">
+  <div class="admin-wrap">
+
+    <aside class="sidebar">
+      <div class="sb-brand">
+        <div class="name">Sharon Hartwell MLA</div>
+        <div class="sub">Bulkley Valley-Stikine</div>
+        <div class="badge">Admin Portal</div>
+      </div>
+      <nav class="sb-nav">
+        <button class="sb-btn active" id="nb-events" onclick="showTab('events')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Events
+        </button>
+        <button class="sb-btn" id="nb-updates" onclick="showTab('updates')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Updates
+        </button>
+        <button class="sb-btn" id="nb-gallery" onclick="showTab('gallery')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Gallery
+        </button>
+        <button class="sb-btn" id="nb-settings" onclick="showTab('settings')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings
+        </button>
+      </nav>
+      <div class="sb-footer"><button onclick="doLogout()">Sign Out</button></div>
+    </aside>
+
+    <main class="admin-main">
+      <div id="global-toast" class="toast"></div>
+
+      <!-- ── Events ── -->
+      <div id="tab-events" class="tab-pane active">
+        <div class="page-hd"><h1>Events</h1><p>Add or move events on the public Events page. Click "Save to Site" to publish.</p></div>
+
+        <div class="card">
+          <div class="card-hd"><h3>Add New Event</h3></div>
+          <div class="row2">
+            <div class="fg"><label>Title *</label><input id="e-title" placeholder="e.g. Smithers Town Hall" /></div>
+            <div class="fg"><label>Status</label><select id="e-status"><option value="upcoming">Upcoming</option><option value="past">Past</option></select></div>
+          </div>
+          <div class="row2">
+            <div class="fg"><label>Date *</label><input id="e-date" type="date" /></div>
+            <div class="fg"><label>Time</label><input id="e-time" placeholder="e.g. 6:30 – 8:30 PM" /></div>
+          </div>
+          <div class="row2">
+            <div class="fg"><label>Venue *</label><input id="e-venue" placeholder="e.g. Smithers Community Centre" /></div>
+            <div class="fg"><label>Tag (optional)</label><input id="e-tag" placeholder="e.g. Family-friendly" /></div>
+          </div>
+          <div class="fg"><label>Description</label><textarea id="e-desc" placeholder="Brief event description..."></textarea></div>
+          <button class="btn btn-primary" onclick="addEvent()">Add Event</button>
+        </div>
+
+        <div class="card">
+          <div class="card-hd"><h3>Upcoming Events</h3><button class="btn btn-gold btn-sm" onclick="saveEvents()">Save to Site</button></div>
+          <div id="upcoming-list"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-hd"><h3>Past Events</h3><button class="btn btn-gold btn-sm" onclick="saveEvents()">Save to Site</button></div>
+          <div id="past-list"></div>
+        </div>
+      </div>
+
+      <!-- ── Updates ── -->
+      <div id="tab-updates" class="tab-pane">
+        <div class="page-hd"><h1>Updates</h1><p>Add news and information posts for the Updates page. Click "Save to Site" to publish.</p></div>
+
+        <div class="card">
+          <div class="card-hd"><h3>Add New Update</h3></div>
+          <div class="row2">
+            <div class="fg"><label>Title *</label><input id="u-title" placeholder="e.g. Road Closures This Winter" /></div>
+            <div class="fg"><label>Date shown (e.g. September 2026)</label><input id="u-date" placeholder="September 2026" /></div>
+          </div>
+          <div class="fg"><label>Category</label>
+            <select id="u-cat">
+              <option value="info">Information</option>
+              <option value="legislature">Legislature</option>
+              <option value="advocacy">Advocacy</option>
+            </select>
+          </div>
+          <div class="fg"><label>Content * — each line becomes a paragraph</label><textarea id="u-body" style="min-height:130px;" placeholder="Write the update here. Press Enter between paragraphs."></textarea></div>
+          <div class="fg"><label>Contact Link Text</label><input id="u-contact" value="Questions? Contact the office" /></div>
+          <button class="btn btn-primary" onclick="addUpdate()">Add Update</button>
+        </div>
+
+        <div class="card">
+          <div class="card-hd"><h3>Current Updates</h3><button class="btn btn-gold btn-sm" onclick="saveUpdates()">Save to Site</button></div>
+          <div id="updates-list"></div>
+        </div>
+      </div>
+
+      <!-- ── Gallery ── -->
+      <div id="tab-gallery" class="tab-pane">
+        <div class="page-hd"><h1>Gallery</h1><p>Add photos to the public Gallery page.</p></div>
+
+        <div class="infobox">
+          <strong>Step 1 — Upload the photo to GitHub first:</strong>
+          <ol class="steps">
+            <li>Go to <strong>github.com/LilCheetoz/SharonHartwellwebsite</strong></li>
+            <li>Navigate into the <code>images/gallery/</code> folder</li>
+            <li>Click <strong>Add file → Upload files</strong>, drag your photo in, and commit</li>
+            <li>Note the exact filename (e.g. <code>event-smithers-sept2026.jpg</code>)</li>
+          </ol>
+          <strong style="margin-top:0.75rem; display:block;">Step 2 — Fill in the form below and click Save to Site.</strong>
+        </div>
+
+        <div class="card">
+          <div class="card-hd"><h3>Add Gallery Photo</h3></div>
+          <div class="row2">
+            <div class="fg"><label>Image Filename *</label><input id="g-file" placeholder="event-smithers-sept2026.jpg" /></div>
+            <div class="fg"><label>Category</label>
+              <select id="g-cat">
+                <option value="events">Events</option>
+                <option value="community">Community</option>
+                <option value="legislature">Legislature</option>
+                <option value="riding">Riding</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Caption / Description *</label><input id="g-caption" placeholder="e.g. Sharon at Smithers Town Hall, September 2026" /></div>
+          <button class="btn btn-primary" onclick="addGallery()">Add to Gallery</button>
+        </div>
+
+        <div class="card">
+          <div class="card-hd"><h3>Gallery Items</h3><button class="btn btn-gold btn-sm" onclick="saveGallery()">Save to Site</button></div>
+          <div id="gallery-list"></div>
+        </div>
+      </div>
+
+      <!-- ── Settings ── -->
+      <div id="tab-settings" class="tab-pane">
+        <div class="page-hd"><h1>Settings</h1></div>
+        <div class="card">
+          <div class="card-hd"><h3>GitHub Connection</h3></div>
+          <p style="font-size:0.875rem;color:var(--muted);margin-bottom:1rem;">Your token is stored only in this browser's local storage — never sent anywhere except directly to GitHub.</p>
+          <div class="fg"><label>Personal Access Token</label><input id="st-token" type="password" placeholder="github_pat_..." /></div>
+          <div style="display:flex;gap:0.75rem;">
+            <button class="btn btn-primary" onclick="updateToken()">Update Token</button>
+            <button class="btn btn-outline" onclick="testConn()">Test Connection</button>
+          </div>
+          <div id="st-toast" class="toast" style="margin-top:1rem;"></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><h3>Session</h3></div>
+          <div style="display:flex;gap:0.75rem;">
+            <button class="btn btn-outline" onclick="doLogout()">Sign Out</button>
+            <button class="btn btn-danger" onclick="clearAll()">Sign Out &amp; Clear Token</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><h3>View Live Site</h3></div>
+          <p style="font-size:0.875rem;color:var(--muted);margin-bottom:1rem;">After saving, Vercel redeploys in ~30 seconds.</p>
+          <a href="../index.html" target="_blank" class="btn btn-outline">Open Home Page ↗</a>
+          &nbsp;
+          <a href="../events.html" target="_blank" class="btn btn-outline">Open Events ↗</a>
+          &nbsp;
+          <a href="../updates.html" target="_blank" class="btn btn-outline">Open Updates ↗</a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+'use strict';
+const REPO = 'LilCheetoz/SharonHartwellwebsite';
+const API  = 'https://api.github.com';
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// ── Screens ───────────────────────────────────────────────────
+function showScreen(name) {
+  document.getElementById('screen-login').style.display  = name === 'login'  ? 'flex'  : 'none';
+  document.getElementById('screen-setup').style.display  = name === 'setup'  ? 'flex'  : 'none';
+  document.getElementById('screen-admin').style.display  = name === 'admin'  ? 'block' : 'none';
+}
+function checkAuth() {
+  if (!sessionStorage.getItem('auth')) return showScreen('login');
+  if (!localStorage.getItem('gh_token')) return showScreen('setup');
+  showScreen('admin');
+  loadAll();
+}
+
+// ── Login ─────────────────────────────────────────────────────
+function doLogin() {
+  const u = v('l-user'), p = v('l-pass');
+  if (u === 'admin' && p === 'admin') { sessionStorage.setItem('auth','1'); checkAuth(); }
+  else setToast('login-err','error','Invalid username or password.');
+}
+function doLogout() { sessionStorage.removeItem('auth'); showScreen('login'); }
+function clearAll() { sessionStorage.removeItem('auth'); localStorage.removeItem('gh_token'); showScreen('login'); }
+
+// ── Setup ─────────────────────────────────────────────────────
+async function doSetup() {
+  const t = v('s-token');
+  if (!t) return setToast('setup-err','error','Please enter your token.');
+  setToast('setup-info','info','Testing connection…');
+  if (await ghTest(t)) { localStorage.setItem('gh_token', t); checkAuth(); }
+  else setToast('setup-err','error','Could not connect. Check the token has Contents: Read & write.');
+}
+
+// ── Tabs ──────────────────────────────────────────────────────
+function showTab(name) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('nb-' + name).classList.add('active');
+}
+
+// ── GitHub helpers ────────────────────────────────────────────
+const tok = () => localStorage.getItem('gh_token');
+const hdr = () => ({ Authorization: 'Bearer ' + tok(), Accept: 'application/vnd.github.v3+json' });
+
+async function ghTest(t) {
+  try { const r = await fetch(`${API}/repos/${REPO}`, { headers: { Authorization:'Bearer '+t, Accept:'application/vnd.github.v3+json' } }); return r.ok; }
+  catch { return false; }
+}
+async function ghGet(path) {
+  const r = await fetch(`${API}/repos/${REPO}/contents/${path}`, { headers: hdr() });
+  return r.ok ? r.json() : null;
+}
+async function ghPut(path, data, sha, msg) {
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+  const body = { message: msg, content };
+  if (sha) body.sha = sha;
+  const r = await fetch(`${API}/repos/${REPO}/contents/${path}`, {
+    method: 'PUT', headers: { ...hdr(), 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  return r.ok;
+}
+function ghParse(file) {
+  return JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\s/g,'')))));
+}
+
+// ── Data ──────────────────────────────────────────────────────
+let evData=null, evSha=null, updData=null, updSha=null, galData=null, galSha=null;
+
+async function loadAll() { await Promise.all([loadEv(), loadUpd(), loadGal()]); }
+
+async function loadEv() {
+  const f = await ghGet('data/events.json');
+  if (!f) return showEl('upcoming-list','<div class="empty">Could not load — check token.</div>');
+  evSha = f.sha; evData = ghParse(f); renderEv();
+}
+async function loadUpd() {
+  const f = await ghGet('data/updates.json');
+  if (!f) return showEl('updates-list','<div class="empty">Could not load — check token.</div>');
+  updSha = f.sha; updData = ghParse(f); renderUpd();
+}
+async function loadGal() {
+  const f = await ghGet('data/gallery.json');
+  if (!f) return showEl('gallery-list','<div class="empty">Could not load — check token.</div>');
+  galSha = f.sha; galData = ghParse(f); renderGal();
+}
+
+// ── Events ────────────────────────────────────────────────────
+function renderEv() {
+  showEl('upcoming-list', renderEvList(evData.upcoming, 'upcoming'));
+  showEl('past-list',     renderEvList(evData.past, 'past'));
+}
+function renderEvList(arr, type) {
+  if (!arr.length) return '<div class="empty">No events.</div>';
+  return arr.map((e,i) => `
+    <div class="ev-row">
+      <div class="ev-badge ${type==='past'?'past':''}">${e.month}<br>${e.day}<br>${e.year}</div>
+      <div class="ev-body"><strong>${esc(e.title)}</strong><small>${esc(e.venue)}${e.time?' · '+esc(e.time):''}</small></div>
+      <div class="ev-actions">
+        ${type==='upcoming'
+          ? `<button class="btn btn-outline btn-sm" onclick="movePast(${i})">→ Past</button>`
+          : `<button class="btn btn-outline btn-sm" onclick="moveUpcoming(${i})">→ Upcoming</button>`}
+        <button class="btn btn-danger btn-sm" onclick="delEv('${type}',${i})">Delete</button>
+      </div>
+    </div>`).join('');
+}
+function addEvent() {
+  const title = v('e-title'), dateVal = v('e-date'), venue = v('e-venue');
+  if (!title||!dateVal||!venue) return toast('error','Title, date, and venue are required.');
+  const d = new Date(dateVal+'T12:00:00');
+  const ev = { id:'evt-'+dateVal.replace(/-/g,''), title, month:MONTHS[d.getMonth()], day:String(d.getDate()), year:String(d.getFullYear()), venue, time:v('e-time'), description:v('e-desc'), tag:v('e-tag') };
+  evData[v('e-status')].unshift(ev);
+  renderEv();
+  toast('success','Event added — click Save to Site to publish.');
+  ['e-title','e-date','e-venue','e-time','e-desc','e-tag'].forEach(id=>document.getElementById(id).value='');
+}
+function movePast(i) { evData.past.unshift(evData.upcoming.splice(i,1)[0]); renderEv(); }
+function moveUpcoming(i) { evData.upcoming.unshift(evData.past.splice(i,1)[0]); renderEv(); }
+function delEv(type,i) { if(confirm('Delete this event?')) { evData[type].splice(i,1); renderEv(); } }
+async function saveEvents() {
+  toast('info','Saving…');
+  if (await ghPut('data/events.json', evData, evSha, 'Update events via admin')) { toast('success','Saved! Vercel redeploys in ~30 seconds.'); await loadEv(); }
+  else toast('error','Save failed — check token permissions.');
+}
+
+// ── Updates ───────────────────────────────────────────────────
+function renderUpd() {
+  if (!updData.length) return showEl('updates-list','<div class="empty">No updates.</div>');
+  const labels = {info:'Information', legislature:'Legislature', advocacy:'Advocacy'};
+  showEl('updates-list', updData.map((u,i) => `
+    <div class="upd-row">
+      <span class="cat-pill cat-${u.category}">${labels[u.category]||u.category}</span>
+      <div style="flex:1;min-width:0;"><strong style="font-size:0.88rem;">${esc(u.title)}</strong><br><small style="color:var(--muted);font-size:0.76rem;">${esc(u.date)}</small></div>
+      <button class="btn btn-danger btn-sm" onclick="delUpd(${i})">Delete</button>
+    </div>`).join(''));
+}
+function addUpdate() {
+  const title = v('u-title'), body = v('u-body');
+  if (!title||!body) return toast('error','Title and content are required.');
+  updData.unshift({ id:'upd-'+Date.now(), date:v('u-date')||new Date().toLocaleString('en-CA',{month:'long',year:'numeric'}), category:v('u-cat'), title, paragraphs:body.split(/\n+/).filter(p=>p.trim()), contact_label:v('u-contact') });
+  renderUpd();
+  toast('success','Update added — click Save to Site to publish.');
+  ['u-title','u-date','u-body'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('u-contact').value='Questions? Contact the office';
+}
+function delUpd(i) { if(confirm('Delete this update?')) { updData.splice(i,1); renderUpd(); } }
+async function saveUpdates() {
+  toast('info','Saving…');
+  if (await ghPut('data/updates.json', updData, updSha, 'Update news via admin')) { toast('success','Saved! Vercel redeploys in ~30 seconds.'); await loadUpd(); }
+  else toast('error','Save failed — check token permissions.');
+}
+
+// ── Gallery ───────────────────────────────────────────────────
+function renderGal() {
+  if (!galData.length) return showEl('gallery-list','<div class="empty">No gallery items yet.</div>');
+  showEl('gallery-list', galData.map((g,i) => `
+    <div class="gal-row">
+      <div class="gal-thumb"><img src="../images/gallery/${esc(g.filename)}" alt="" onerror="this.style.opacity='0'" /></div>
+      <div style="flex:1;min-width:0;"><strong style="font-size:0.88rem;">${esc(g.caption)}</strong><br><small style="color:var(--muted);font-size:0.76rem;">${esc(g.filename)} · ${esc(g.category)}</small></div>
+      <button class="btn btn-danger btn-sm" onclick="delGal(${i})">Remove</button>
+    </div>`).join(''));
+}
+function addGallery() {
+  const filename = v('g-file'), caption = v('g-caption');
+  if (!filename||!caption) return toast('error','Filename and caption are required.');
+  galData.unshift({ id:'gal-'+Date.now(), filename, caption, category:v('g-cat') });
+  renderGal();
+  toast('success','Photo added — click Save to Site to publish.');
+  document.getElementById('g-file').value=''; document.getElementById('g-caption').value='';
+}
+function delGal(i) { if(confirm('Remove this gallery item?')) { galData.splice(i,1); renderGal(); } }
+async function saveGallery() {
+  toast('info','Saving…');
+  if (await ghPut('data/gallery.json', galData, galSha, 'Update gallery via admin')) { toast('success','Saved! Vercel redeploys in ~30 seconds.'); await loadGal(); }
+  else toast('error','Save failed — check token permissions.');
+}
+
+// ── Settings ──────────────────────────────────────────────────
+function updateToken() { const t=v('st-token'); if(t){ localStorage.setItem('gh_token',t); setToast('st-toast','success','Token updated.'); } }
+async function testConn() { setToast('st-toast','info','Testing…'); setToast('st-toast', await ghTest(tok()) ? 'success':'error', await ghTest(tok()) ? 'Connected!' : 'Failed — check token.'); }
+
+// ── Helpers ───────────────────────────────────────────────────
+function v(id) { return document.getElementById(id).value.trim(); }
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function showEl(id,html) { document.getElementById(id).innerHTML = html; }
+function toast(type, msg) {
+  const el = document.getElementById('global-toast');
+  el.className = 'toast ' + type; el.textContent = msg; el.style.display = 'block';
+  clearTimeout(el._t); el._t = setTimeout(()=>{ el.style.display='none'; }, 5000);
+}
+function setToast(id, type, msg) {
+  const el = document.getElementById(id);
+  el.className = 'toast ' + type; el.textContent = msg; el.style.display = 'block';
+}
+
+// ── Keyboard ──────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  if (document.getElementById('screen-login').style.display !== 'none') doLogin();
+  else if (document.getElementById('screen-setup').style.display !== 'none') doSetup();
+});
+
+checkAuth();
+</script>
+</body>
+</html>

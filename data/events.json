@@ -1,0 +1,105 @@
+{
+  "upcoming": [
+    {
+      "id": "evt-20260715",
+      "title": "Northern BC Small Business Forum",
+      "month": "Jul",
+      "day": "15",
+      "year": "2026",
+      "venue": "Smithers Chamber of Commerce",
+      "time": "9:00 AM – 12:00 PM",
+      "description": "Connecting local business owners with provincial resources and discussing regulatory and economic concerns.",
+      "tag": ""
+    },
+    {
+      "id": "evt-20260802",
+      "title": "Telkwa Community Barbecue & Meet-and-Greet",
+      "month": "Aug",
+      "day": "2",
+      "year": "2026",
+      "venue": "Telkwa Memorial Park",
+      "time": "12:00 – 4:00 PM",
+      "description": "A relaxed community gathering — come meet Sharon and her team in a casual setting.",
+      "tag": "Family-friendly"
+    }
+  ],
+  "past": [
+    {
+      "id": "evt-20260708",
+      "title": "Hazelton Area Agricultural Meeting",
+      "month": "Jul",
+      "day": "8",
+      "year": "2026",
+      "venue": "Hazelton Agriplex",
+      "time": "",
+      "description": "Meeting with farmers, ranchers, and agricultural producers",
+      "tag": ""
+    },
+    {
+      "id": "evt-20260620",
+      "title": "Houston Seniors' Forum",
+      "month": "Jun",
+      "day": "20",
+      "year": "2026",
+      "venue": "Houston Complex",
+      "time": "",
+      "description": "Forum for seniors and caregivers on healthcare, housing, and support programs",
+      "tag": ""
+    },
+    {
+      "id": "evt-20260612",
+      "title": "Burns Lake Community Roundtable",
+      "month": "Jun",
+      "day": "12",
+      "year": "2026",
+      "venue": "Burns Lake Village Hall",
+      "time": "",
+      "description": "Healthcare access, road maintenance, and economic development in the Lakes District",
+      "tag": ""
+    },
+    {
+      "id": "evt-20260605",
+      "title": "Smithers Town Hall",
+      "month": "Jun",
+      "day": "5",
+      "year": "2026",
+      "venue": "Smithers Community Centre",
+      "time": "",
+      "description": "Open discussion on issues affecting the Smithers area",
+      "tag": ""
+    },
+    {
+      "id": "evt-20260418",
+      "title": "Spring Constituency Tour – Multiple Communities",
+      "month": "Apr",
+      "day": "18",
+      "year": "2026",
+      "venue": "Smithers, Burns Lake, Granisle",
+      "time": "",
+      "description": "Multi-day constituency visit and open houses",
+      "tag": ""
+    },
+    {
+      "id": "evt-20260310",
+      "title": "Healthcare Access Forum",
+      "month": "Mar",
+      "day": "10",
+      "year": "2026",
+      "venue": "Smithers Legion Hall",
+      "time": "",
+      "description": "Discussion on Northern Health services with 80+ attendees",
+      "tag": ""
+    },
+    {
+      "id": "evt-20260205",
+      "title": "Telkwa Fire Hall Fundraiser & Community Night",
+      "month": "Feb",
+      "day": "5",
+      "year": "2026",
+      "venue": "Telkwa",
+      "time": "",
+      "description": "Supported local volunteer fire department fundraiser",
+      "tag": ""
+    }
+  ]
+}
